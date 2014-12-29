@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuantsLab", "QuantsLab.vcxproj", "{23A0B0FE-DE64-410E-96A7-DE489D8B5EC5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E8296A35-DDBD-4CF3-BA6A-2217AE086561} = {E8296A35-DDBD-4CF3-BA6A-2217AE086561}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InterfaceGenerator", "..\..\thirdParty\xlw\xlw-5.0.2f0\build\vc12\InterfaceGenerator.vcxproj", "{E8296A35-DDBD-4CF3-BA6A-2217AE086561}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{23A0B0FE-DE64-410E-96A7-DE489D8B5EC5}.Debug|Win32.Build.0 = Debug|Win32
 		{23A0B0FE-DE64-410E-96A7-DE489D8B5EC5}.Release|Win32.ActiveCfg = Release|Win32
 		{23A0B0FE-DE64-410E-96A7-DE489D8B5EC5}.Release|Win32.Build.0 = Release|Win32
+		{E8296A35-DDBD-4CF3-BA6A-2217AE086561}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E8296A35-DDBD-4CF3-BA6A-2217AE086561}.Debug|Win32.Build.0 = Debug|Win32
+		{E8296A35-DDBD-4CF3-BA6A-2217AE086561}.Release|Win32.ActiveCfg = Release|Win32
+		{E8296A35-DDBD-4CF3-BA6A-2217AE086561}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

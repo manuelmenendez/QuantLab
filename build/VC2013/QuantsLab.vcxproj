@@ -73,7 +73,7 @@
       <AdditionalLibraryDirectories>$(ProjectDir)..\..\thirdParty\xlw\xlw-5.0.2f0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>"$(ProjectDir)..\..\thirdParty\xlw\xlw-5.0.2f0\build\vc12\Debug\InterfaceGenerator.exe"  "$(ProjectDir)..\..\include\BlackScholes.h" "$(ProjectDir)..\..\src\xlwBlackScholes.cpp"</Command>
+      <Command>"$(ProjectDir)..\..\thirdParty\xlw\xlw-5.0.2f0\build\vc12\$(Configuration)\InterfaceGenerator.exe"  "$(ProjectDir)..\..\include\BlackScholes.h" "$(ProjectDir)..\..\src\xlwBlackScholes.cpp"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -96,7 +96,7 @@
       <AdditionalLibraryDirectories>$(ProjectDir)..\..\thirdParty\xlw\xlw-5.0.2f0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
-      <Command>"$(ProjectDir)..\..\thirdParty\xlw\xlw-5.0.2f0\build\vc12\Debug\InterfaceGenerator.exe"  "$(ProjectDir)..\..\include\BlackScholes.h" "$(ProjectDir)..\..\src\xlwBlackScholes.cpp"</Command>
+      <Command>"$(ProjectDir)..\..\thirdParty\xlw\xlw-5.0.2f0\build\vc12\$(Configuration)\InterfaceGenerator.exe"  "$(ProjectDir)..\..\include\BlackScholes.h" "$(ProjectDir)..\..\src\xlwBlackScholes.cpp"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
