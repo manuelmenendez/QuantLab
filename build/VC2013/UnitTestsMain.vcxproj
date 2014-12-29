@@ -10,36 +10,20 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\src\q_BlackScholes\q_StandardBlackScholes.cpp" />
-    <ClCompile Include="..\..\src\xlwq_StandardBlackScholes.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\include\q_StandardBlackScholes.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\thirdParty\xlw\xlw-5.0.2f0\build\vc12\InterfaceGenerator.vcxproj">
-      <Project>{e8296a35-ddbd-4cf3-ba6a-2217ae086561}</Project>
-    </ProjectReference>
-    <ProjectReference Include="QuantsLabLib.vcxproj">
-      <Project>{189e1f61-fd82-4fd9-9810-a18bf076da2f}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{23A0B0FE-DE64-410E-96A7-DE489D8B5EC5}</ProjectGuid>
+    <ProjectGuid>{B7B9A04C-8D36-4DC5-9692-8AE51132AD38}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>ConsoleApplication1</RootNamespace>
-    <ProjectName>QuantsLabAddIn</ProjectName>
+    <RootNamespace>UnitTestsMain</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -71,18 +55,13 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CONSOLEAPPLICATION1_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\thirdParty\xlw\xlw-5.0.2f0\include;$(ProjectDir)..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\thirdParty\gtest\gtest-1.7.0\include;$(ProjectDir)..\..\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>xlw-vc120-mt-gd-5_0_2f0.lib;QuantsLab.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\thirdParty\xlw\xlw-5.0.2f0\lib;$(ProjectDir)\..\..\lib\$(PlatformName)\$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
-    <PreBuildEvent>
-      <Command>"$(ProjectDir)..\..\thirdParty\xlw\xlw-5.0.2f0\build\vc12\$(Configuration)\InterfaceGenerator.exe"  "$(ProjectDir)..\..\include\q_StandardBlackScholes.h" "$(ProjectDir)..\..\src\xlwq_StandardBlackScholes.cpp"</Command>
-    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -92,21 +71,28 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CONSOLEAPPLICATION1_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\thirdParty\xlw\xlw-5.0.2f0\include;$(ProjectDir)..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\thirdParty\gtest\gtest-1.7.0\include;$(ProjectDir)..\..\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>xlw-vc120-mt-5_0_2f0.lib;QuantsLab.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\..\thirdParty\xlw\xlw-5.0.2f0\lib;$(ProjectDir)\..\..\lib\$(PlatformName)\$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
-    <PreBuildEvent>
-      <Command>"$(ProjectDir)..\..\thirdParty\xlw\xlw-5.0.2f0\build\vc12\$(Configuration)\InterfaceGenerator.exe"  "$(ProjectDir)..\..\include\q_StandardBlackScholes.h" "$(ProjectDir)..\..\src\xlwq_StandardBlackScholes.cpp"</Command>
-    </PreBuildEvent>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\test\BlackScholesUT.cpp" />
+    <ClCompile Include="..\..\test\mainUT.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\thirdParty\gtest\gtest-1.7.0\msvc\gtest-md.vcxproj">
+      <Project>{c8f6c172-56f2-4e76-b5fa-c3b423b31be8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="QuantsLabLib.vcxproj">
+      <Project>{189e1f61-fd82-4fd9-9810-a18bf076da2f}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -1,26 +1,13 @@
 
-#ifndef BLACKSCHOLES_H
-#define BLACKSCHOLES_H
+#ifndef STANDARDBLACKSCHOLES_H
+#define STANDARDBLACKSCHOLES_H
 
 // typedef double Date;
 //typedef bool IsCall;
 
 
-
-//#include "xlw/MyContainers.h"
-//#include <xlw/CellMatrix.h>
-//#include <xlw/DoubleOrNothing.h>
-//#include <xlw/ArgList.h>
-//#include "reftest.h"
-
-//using namespace xlw;
-
-
-//<xlw:libraryname=QuantLab
-
-
 double // Call and Put price with standar log-normal Black-Scholes model
-q_EstandarBlackScholes(double spot // spot
+StandardBlackScholes(double spot // spot
     , double strike // strike
 	, double tipoInteres //  tipoInteres
 	, double FechaValor //  FechaValor

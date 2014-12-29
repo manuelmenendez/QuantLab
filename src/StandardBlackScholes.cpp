@@ -1,6 +1,6 @@
-#include "BlackScholes.h"
+#include "StandardBlackScholes.h"
 
-double q_EstandarBlackScholes(
+double StandardBlackScholes(
 	double spot,
 	double strike,
 	double tipoInteres,

@@ -15,16 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\q_BlackScholes\q_StandardBlackScholes.cpp">
+    <ClCompile Include="..\..\test\BlackScholesUT.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\xlwq_StandardBlackScholes.cpp">
+    <ClCompile Include="..\..\test\mainUT.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\include\q_StandardBlackScholes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

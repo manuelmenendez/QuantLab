@@ -6,7 +6,7 @@
 
 #include "xlw/MyContainers.h"
 #include <xlw/CellMatrix.h>
-#include "BlackScholes.h"
+#include "q_StandardBlackScholes.h"
 #include <xlw/xlw.h>
 #include <xlw/XlFunctionRegistration.h>
 #include <stdexcept>
@@ -25,7 +25,7 @@ const char* LibraryName = "QuantLab";
 namespace
 {
 XLRegistration::Arg
-q_EstandarBlackScholesArgs[]=
+q_StandarBlackScholesArgs[]=
 {
 { "spot"," spot ","B"},
 { "strike"," strike ","B"},
@@ -37,11 +37,11 @@ q_EstandarBlackScholesArgs[]=
 { "Call"," true for Call, false for Put ","XLF_OPER"}
 };
   XLRegistration::XLFunctionRegistrationHelper
-registerq_EstandarBlackScholes("xlq_EstandarBlackScholes",
-"q_EstandarBlackScholes",
+registerq_StandarBlackScholes("xlq_StandarBlackScholes",
+"q_StandarBlackScholes",
 " Call and Put price with standar log-normal Black-Scholes model ",
 LibraryName,
-q_EstandarBlackScholesArgs,
+q_StandarBlackScholesArgs,
 8
 ,false
 ,false
@@ -58,7 +58,7 @@ q_EstandarBlackScholesArgs,
 extern "C"
 {
 LPXLFOPER EXCEL_EXPORT
-xlq_EstandarBlackScholes(
+xlq_StandarBlackScholes(
 double spot,
 double strike,
 double tipoInteres,
@@ -86,7 +86,7 @@ bool Call(
 	Callb.AsBool("Call"));
 
 double result(
-	q_EstandarBlackScholes(
+	q_StandarBlackScholes(
 		spot,
 		strike,
 		tipoInteres,
