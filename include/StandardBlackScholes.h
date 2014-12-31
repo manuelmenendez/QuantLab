@@ -2,21 +2,23 @@
 #ifndef STANDARDBLACKSCHOLES_H
 #define STANDARDBLACKSCHOLES_H
 
-// typedef double Date;
-//typedef bool IsCall;
+namespace ql {
 
 
-double // Call and Put price with standar log-normal Black-Scholes model
-StandardBlackScholes(double spot // spot
-    , double strike // strike
-	, double tipoInteres //  tipoInteres
-	, double FechaValor //  FechaValor
-	, double FechaVcto // FechaVcto
-	, double Volatilidad // Volatilidad
-	, double Dividendos // Dividendos 
-	, bool Call // true for Call, false for Put
-	);
+	//"C" Interface
+	double IStandardBlackScholes(double spot,  double strike , double interestRate , long valueDate , long expiry ,
+		double volatility , double dividends , bool IsCall );
 
+	template < class O >
+	class StandardBlackScholes
+	{
+	public:
+		StandardBlackScholes(const O & option) : theOption_(option) {}
+		double premium();
 
+	private:
+		O theOption_;
+	};
 
+} //namespace
 #endif

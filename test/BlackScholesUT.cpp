@@ -1,10 +1,26 @@
 #include <gtest/gtest.h>
 #include "StandardBlackScholes.h"
+#include "BlackScholesUT.h"
 
-TEST(StandardBlackScholes, dummyTest) {
+void BlackScholesOptionFixture::SetUp()
+{
+	option_.Spot(1.0);
+	option_.Strike(1.1);
+	option_.InterestRate(0.05);
+	option_.ValueDate(42003);
+	option_.Expiry(42723);
+	option_.Volatility(0.25);
+	option_.Dividends(0.3);
+	option_.PutCall(ql::PutCallT::Call);
+	option_.Dividends(0.3);
+};
+	
 
-	double spot = 1 , strike = 1, tipoInteres = 1, FechaValor = 1, FechaVcto= 1, Volatilidad = 1, Dividendos = 1;
-	double expected_dummy = spot+ strike + tipoInteres + FechaValor + FechaValor + FechaVcto+ Volatilidad + Dividendos;
-	double actual = StandardBlackScholes(spot, strike, tipoInteres, FechaValor, FechaVcto, Volatilidad, Dividendos, false);
-	EXPECT_EQ(expected_dummy, actual);
+TEST_F(BlackScholesOptionFixture, testPositive) {
+
+	ql::StandardBlackScholes<ql::BasicOption<>>  myBlackScholes(option());
+
+#pragma message("Comparacion de flotantes, por favor!!")
+	EXPECT_EQ(11.0867808943643, myBlackScholes.premium()); 
 }
+

@@ -84,6 +84,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\BasicOption.h" />
+    <ClInclude Include="..\..\include\Date.h" />
     <ClInclude Include="..\..\include\StandardBlackScholes.h" />
   </ItemGroup>
   <ItemGroup>

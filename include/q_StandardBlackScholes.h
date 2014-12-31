@@ -1,20 +1,6 @@
 
-#ifndef BLACKSCHOLES_H
-#define BLACKSCHOLES_H
-
-// typedef double Date;
-//typedef bool IsCall;
-
-
-
-//#include "xlw/MyContainers.h"
-//#include <xlw/CellMatrix.h>
-//#include <xlw/DoubleOrNothing.h>
-//#include <xlw/ArgList.h>
-//#include "reftest.h"
-
-//using namespace xlw;
-
+#ifndef Q_STANDARDBLACKSCHOLES_H
+#define Q_STANDARDBLACKSCHOLES_H
 
 //<xlw:libraryname=QuantLab
 
@@ -29,7 +15,6 @@ q_StandarBlackScholes(double spot // spot
 	, double Dividendos // Dividendos 
 	, bool Call // true for Call, false for Put
 	);
-
 
 
 #endif
