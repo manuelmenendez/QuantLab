@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\q_BlackScholes\q_StandardBlackScholes.cpp">
+    <ClCompile Include="..\..\src\xlwq_StandardBlackScholes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\xlwq_StandardBlackScholes.cpp">
+    <ClCompile Include="..\..\src\q_StandardBlackScholes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

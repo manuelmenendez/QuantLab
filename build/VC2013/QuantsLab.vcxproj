@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\q_BlackScholes\q_StandardBlackScholes.cpp" />
+    <ClCompile Include="..\..\src\q_StandardBlackScholes.cpp" />
     <ClCompile Include="..\..\src\xlwq_StandardBlackScholes.cpp" />
   </ItemGroup>
   <ItemGroup>
