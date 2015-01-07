@@ -29,12 +29,12 @@ q_StandarBlackScholesArgs[]=
 {
 { "spot"," spot ","B"},
 { "strike"," strike ","B"},
-{ "tipoInteres","  tipoInteres ","B"},
-{ "FechaValor","  FechaValor ","B"},
-{ "FechaVcto"," FechaVcto ","B"},
-{ "Volatilidad"," Volatilidad ","B"},
-{ "Dividendos"," Dividendos ","B"},
-{ "Call"," true for Call, false for Put ","XLF_OPER"}
+{ "interestRate","  Interest Rate ","B"},
+{ "valueDate","  Value date ","B"},
+{ "expiryDtae"," Expiry ","B"},
+{ "volatility"," Volatility ","B"},
+{ "Dividends"," Dividends ","B"},
+{ "isCall"," true for Call, false for Put ","XLF_OPER"}
 };
   XLRegistration::XLFunctionRegistrationHelper
 registerq_StandarBlackScholes("xlq_StandarBlackScholes",
@@ -61,12 +61,12 @@ LPXLFOPER EXCEL_EXPORT
 xlq_StandarBlackScholes(
 double spot,
 double strike,
-double tipoInteres,
-double FechaValor,
-double FechaVcto,
-double Volatilidad,
-double Dividendos,
-LPXLFOPER Calla)
+double interestRate,
+double valueDate,
+double expiryDtae,
+double volatility,
+double Dividends,
+LPXLFOPER isCalla)
 {
 EXCEL_BEGIN;
 
@@ -80,21 +80,21 @@ EXCEL_BEGIN;
 
 
 
-XlfOper Callb(
-	(Calla));
-bool Call(
-	Callb.AsBool("Call"));
+XlfOper isCallb(
+	(isCalla));
+bool isCall(
+	isCallb.AsBool("isCall"));
 
 double result(
 	q_StandarBlackScholes(
 		spot,
 		strike,
-		tipoInteres,
-		FechaValor,
-		FechaVcto,
-		Volatilidad,
-		Dividendos,
-		Call)
+		interestRate,
+		valueDate,
+		expiryDtae,
+		volatility,
+		Dividends,
+		isCall)
 	);
 return XlfOper(result);
 EXCEL_END

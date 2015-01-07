@@ -4,17 +4,17 @@
 #include "BasicOption.h"
 
 
-class BlackScholesOptionFixture : public ::testing::Test
+class BlackScholesOptionUTFixture : public ::testing::Test
 {
-	public:
-		BlackScholesOptionFixture() : option_() {}
-		const ql::BasicOption<>  & option() { return option_; }
-	protected:
-		virtual void	SetUp();
-	private:
-		ql::BasicOption<> option_;
-};
+public:
+	BlackScholesOptionUTFixture() : option_() {}
+	const ql::BasicOption<>  & option() { return option_; }
+	ql::BasicOption<> option_;
 
+protected:
+	virtual void	SetUp();
+
+};
 
 
 #endif

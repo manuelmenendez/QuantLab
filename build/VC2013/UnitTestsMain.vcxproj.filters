@@ -24,6 +24,9 @@
     <ClCompile Include="..\..\test\BasicOptionUT.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\DynamicAssertUTcpp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\test\BlackScholesUT.h">

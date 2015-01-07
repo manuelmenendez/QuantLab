@@ -1,8 +1,10 @@
+#include <cmath>
 #include "StandardBlackScholes.h"
 #include "BasicOption.h"
 
 namespace ql
 {
+	template StandardBlackScholes<ql::BasicOption<double, double, double, double>, double, double, double, double>;
 
 	double IStandardBlackScholes(
 		double spot,
@@ -28,14 +30,35 @@ namespace ql
 		return myOption.Spot();
 	}
 
-
-	template <typename O>
-	double StandardBlackScholes<O>::premium()
+	template < class O, class P, class I, class VT, class D >
+	double StandardBlackScholes< O, P, I, VT, D>::premium()
 	{
 		return -1.0f;
 	}
+	
+	template < class O, class P, class I, class VT, class D >
+	double StandardBlackScholes< O, P, I, VT, D>::d1()
+	{
+		P S = theOption_.Spot();
+		P K = theOption_.Strike();
+		I r = theOption_.InterestRate();
+		D q = theOption_.Dividends();
+		VT SIG = theOption_.Volatility();
+		double T = theOption_.yearFractionToExpiry();
 
+		return  (std::log(S / K) + (r - q + 0.5 * std::exp(SIG * SIG) * T) / (SIG * std::sqrt(T)));
+	}
 
+	
+	
+	template < class O, class P, class I, class VT, class D> 
+	double StandardBlackScholes< O, P, I, VT, D>::d2()
+	{
+		VT SIG = theOption_.Volatility();
+		double T = theOption_.yearFractionToExpiry();
 
-	template class StandardBlackScholes <BasicOption<double, double, double, double>>;
+		return (d1() - SIG * std::sqrt(T));
+	}
+
+	
 }
