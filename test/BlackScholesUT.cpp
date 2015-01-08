@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include "BlackScholesUT.h"
 
-// Do not this in production code. It is only an example of testing private members, which should not be neccesary
+// Do not redefine keywords in production code. It is only a technique for testing private members, which should not be neccesary
 #define protected public
 #define private   public
 #include "BasicOption.h"
@@ -11,6 +11,7 @@
 #undef protected
 #undef private
 
+const double BlackScholesOptionUTFixture::epsilon = 1E-40;
 
 void BlackScholesOptionUTFixture::SetUp()
 {
@@ -20,31 +21,20 @@ void BlackScholesOptionUTFixture::SetUp()
 	option_.ValueDate(42003);
 	option_.Expiry(42723);
 	option_.Volatility(0.25);
-	option_.Dividends(0.3);
+	option_.Dividends(0.03);
 	option_.PutCall(ql::PutCallT::Call);
-	option_.Dividends(0.3);
 };
 	
 
-TEST_F(BlackScholesOptionUTFixture, testd1) {
+TEST_F(BlackScholesOptionUTFixture, positive_call) {
 
-	option_.Spot(0.95);
-	option_.Strike(1.05);
-	option_.InterestRate(0.08);
-	option_.ValueDate(42009);
-	option_.ValueDate(42723);
-
+	//These case tests typical values
 	ql::StandardBlackScholes <> myBlackScholes(option_);
 
-#pragma message("Comparacion de flotantes, por favor!!")
-	EXPECT_EQ(11.0867808943643, myBlackScholes.d1());
-}
-
-TEST_F(BlackScholesOptionUTFixture, testPositive) {
-
-	ql::StandardBlackScholes<ql::BasicOption<>>  myBlackScholes(option());
-
-#pragma message("Comparacion de flotantes, por favor!!")
-	EXPECT_EQ(11.0867808943643, myBlackScholes.premium()); 
+	EXPECT_NEAR(0.0164777110308015, myBlackScholes.d1(),      BlackScholesOptionUTFixture::epsilon);
+	EXPECT_NEAR(-0.33464573055759,  myBlackScholes.d2(),      BlackScholesOptionUTFixture::epsilon);
+	EXPECT_NEAR(0.506573358152231,  myBlackScholes.nd1(),     BlackScholesOptionUTFixture::epsilon);
+	EXPECT_NEAR(0.398888124678723,  myBlackScholes.ndd1(),    BlackScholesOptionUTFixture::epsilon);
+	EXPECT_NEAR(0.109741780719115,  myBlackScholes.premium(), BlackScholesOptionUTFixture::epsilon);
 }
 

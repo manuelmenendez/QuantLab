@@ -22,9 +22,21 @@ namespace ql {
 	private:
 		double d1();
 		double d2();
-
+		double nd1();
+		double ndd1();
+		double nd2();
 		O  theOption_;
 	};
 
-} //namespace
+	//template <ql::PutCallT N = ql::PutCallT::Call, class O = BasicOption<>, class P = double, class I = double, class VT = double, class D = double >
+	//double Premium_imp();
+
+
+	template <ql::PutCallT N > double test();
+	template <class C, ql::PutCallT N > double test2();
+} //namespace ql
+
+
+
+
 #endif

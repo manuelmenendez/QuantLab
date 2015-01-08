@@ -13,7 +13,7 @@ namespace Assert{
 		return os.str();
 	}
 
-	template <const bool  condition, class Except >
+	template <const bool  condition, class Except > inline
 	void dynamic(const bool assertion, const std::string & message = "Assert::dynamic failed")
 	{
 		if (assertion)
@@ -40,6 +40,7 @@ namespace Assert{
 	{
 		dynamic<true, Error>(b);
 	}
+	
 
 } //namespace Assert
 

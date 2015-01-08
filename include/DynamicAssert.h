@@ -11,12 +11,17 @@
 #define constexpr_ constexpr
 #endif
 
-#ifndef CURRENT_MODE
-#define CURRENT_MODE Assert::Mode::terminate_
+#ifndef ASSERT_CURRENT_MODE 
+#define ASSERT_CURRENT_MODE Mode::throw_
 #endif
 
-#ifndef CURRENT_LEVEL
-#define CURRENT_LEVEL 1
+#ifndef ASSERT_CURRENT_LEVEL
+#ifdef _DEBUG
+#define ASSERT_CURRENT_LEVEL Level::debug_
+#endif
+#ifndef _DEBUG
+#define ASSERT_CURRENT_LEVEL Level::release_
+#endif
 #endif
 
 
@@ -26,15 +31,21 @@
 
 namespace Assert
 {
+//Si no pongo nada, se comprueba en debug, pero no en release,
+//Si pongo debug, se comprueba en debug pero no en release
+//Si pongo release, se comprueba en debug y en release
 
-	enum  class Mode{ throw_, terminate_, ignore_ };
+#pragma message("revisar niveles")
+	enum  class Mode { ignore_, throw_, terminate_ };
+	enum  class Level{ debug_ = 0, release_=1};
 
-	constexpr_ int current_level = CURRENT_LEVEL;
-	constexpr_ int default_level = 1;
-	constexpr_ Mode current_mode = CURRENT_MODE;
+	constexpr_ Mode current_mode = ASSERT_CURRENT_MODE;
+	constexpr_ Level current_level = ASSERT_CURRENT_LEVEL;
+	constexpr_ Level default_level = Level::release_;
 
-	constexpr_ bool level(int n);
-
+	inline constexpr_ bool level(int n) {
+			return static_cast<int>(n) <= static_cast<int>(current_level);
+	}
 
 	struct Error : std::runtime_error
 	{
