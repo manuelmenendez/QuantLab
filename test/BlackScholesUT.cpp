@@ -11,7 +11,7 @@
 #undef protected
 #undef private
 
-const double BlackScholesOptionUTFixture::epsilon = 1E-40;
+const double BlackScholesOptionUTFixture::epsilon = 1E-15;
 
 void BlackScholesOptionUTFixture::SetUp()
 {

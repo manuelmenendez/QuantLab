@@ -18,7 +18,8 @@ namespace ql {
 	public:
 		StandardBlackScholes(const O & option) : theOption_(option) {}
 		double premium();
-		
+		void   evaluate(double & premium, double & delta, double & gamma, double & vega){}
+
 	private:
 		double d1();
 		double d2();

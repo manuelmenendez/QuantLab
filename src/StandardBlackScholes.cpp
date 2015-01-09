@@ -32,7 +32,8 @@ namespace ql
 		myOption.Dividends(dividends);
 		myOption.PutCall(isCall ? ql::PutCallT::Call : ql::PutCallT::Put);
 
-		return myOption.Spot();
+		StandardBlackScholes<> myBlackScholes(myOption);
+		return myBlackScholes.premium();
 	}
 
 	template < class O, class P, class I, class VT, class D >
@@ -62,9 +63,10 @@ namespace ql
 		
 		const double eps = std::numeric_limits<double>::epsilon() * 100.0;
 
-		Assert::dynamic( ( std::abs(K) < eps  ), Assert::compose(__FILE__, __LINE__, "K is zero"));
+	/*	Assert::dynamic( ( std::abs(K) < eps  ), Assert::compose(__FILE__, __LINE__, "K is zero"));
 		Assert::dynamic( ( S / K < eps), Assert::compose(__FILE__, __LINE__, "S/K is negative"));
 		Assert::dynamic( ( S / K < eps), Assert::compose(__FILE__, __LINE__, "S/K is negative"));
+		*/
 
 		return  (std::log(S / K) + (r - q + 0.5 * SIG * SIG)* T) / (SIG * std::sqrt(T));
 	}
