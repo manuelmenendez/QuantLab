@@ -31,6 +31,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UserAcceptTest", "UserAcceptTest.vcxproj", "{9A1F4E0C-A130-4B86-89A0-C03AF06443D7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "UnitTests.vcxproj", "{B7B9A04C-8D36-4DC5-9692-8AE51132AD38}"
+	ProjectSection(ProjectDependencies) = postProject
+		{189E1F61-FD82-4FD9-9810-A18BF076DA2F} = {189E1F61-FD82-4FD9-9810-A18BF076DA2F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
