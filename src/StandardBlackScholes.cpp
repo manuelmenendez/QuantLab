@@ -9,14 +9,17 @@
 
 namespace ql
 {
+	template <class O = ql::BasicOption<>>
+	const double StandardBlackScholes<O>::eps = 10e-12;
+
 	template StandardBlackScholes<ql::BasicOption<double, double, double, double> >;
 
 	double IStandardBlackScholes(
 		double spot,
 		double strike,
 		double interestRate,
-		long valueDate,
-		long expiry,
+		double valueDate,
+		double expiry,
 		double volatility,
 		double dividends,
 		bool isCall)
@@ -45,7 +48,9 @@ namespace ql
 		const  O::DividendT q = theOption_.Dividends();
 		const  O::VolatillityT SIG = theOption_.Volatility();
 		
-		const double T = theOption_.yearFractionToExpiry();
+		const double T = theOption_.YearFractionToExpiry();
+		Assert::dynamic((-r * T < StandardBlackScholes::eps), Assert::compose(__FILE__, __LINE__, "-r * T is below zero"));
+
 		const double factor = exp(-r * T);
 		double premium = (exp(-q*T) * S * nd1() - K * factor * nd2());
 		return  premium;
@@ -59,23 +64,22 @@ namespace ql
 		const  O::InterestT r = theOption_.InterestRate();
 		const  O::DividendT q = theOption_.Dividends();
 		const  O::VolatillityT SIG = theOption_.Volatility();
-		const double T = theOption_.yearFractionToExpiry();
-		
-		const double eps = std::numeric_limits<double>::epsilon() * 100.0;
+		const double T = theOption_.YearFractionToExpiry();
 
-	/*	Assert::dynamic( ( std::abs(K) < eps  ), Assert::compose(__FILE__, __LINE__, "K is zero"));
-		Assert::dynamic( ( S / K < eps), Assert::compose(__FILE__, __LINE__, "S/K is negative"));
-		Assert::dynamic( ( S / K < eps), Assert::compose(__FILE__, __LINE__, "S/K is negative"));
-		*/
-
-		return  (std::log(S / K) + (r - q + 0.5 * SIG * SIG)* T) / (SIG * std::sqrt(T));
+		double dummy_eps = StandardBlackScholes::eps;
+		Assert::dynamic( ( std::abs(K) > StandardBlackScholes::eps  ), Assert::compose(__FILE__, __LINE__, "K is zero"));
+		Assert::dynamic( ( S / K > StandardBlackScholes::eps),         Assert::compose(__FILE__, __LINE__, "S/K is negative"));
+		Assert::dynamic( ( T > StandardBlackScholes::eps),              Assert::compose(__FILE__, __LINE__, "T is negative"));
+		double d1 = (std::log(S / K) + (r - q + 0.5 * SIG * SIG)* T) / (SIG * std::sqrt(T));
+		return  d1;
 	}
 
 	template < class O >
 	double StandardBlackScholes< O>::d2()
 	{
 		const O::VolatillityT SIG = theOption_.Volatility();
-		const double T = theOption_.yearFractionToExpiry();
+		const double T = theOption_.YearFractionToExpiry();
+		Assert::dynamic((T > StandardBlackScholes::eps), Assert::compose(__FILE__, __LINE__, "T is negative"));
 		const double d2 = (d1() - SIG * std::sqrt(T));
 		return d2;
 	}

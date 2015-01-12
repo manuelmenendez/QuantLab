@@ -38,7 +38,7 @@ namespace Assert
 // If level of assertion is release_,  is evaluated both in debug and release 
 
 	enum  class Mode { ignore_, throw_, terminate_ };
-	enum  class Level{ debug_ = 0, release_=1};
+	enum  class Level{ debug_ = 0, release_= 1 };
 
 	constexpr_ Mode current_mode = ASSERT_CURRENT_MODE;
 	constexpr_ Level current_level = ASSERT_CURRENT_LEVEL;
@@ -67,12 +67,6 @@ namespace Assert
 			if (current_mode == Mode::terminate_)
 				std::terminate();
 		}
-
-
-	//template <Assert::Level  L = default_level, class Except = Error>
-	//void dynamicL(const bool assertion, const std::string & message);
-
-
 
 } //namespace Assert
 

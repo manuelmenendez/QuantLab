@@ -22,6 +22,7 @@ namespace ql {
 		using  VolatillityT = VT;
 		using  DividendT = D;
 		
+		static const double eps;
 
 		BasicOption() : spot_(0), strike_(0), interestRate_(0), valueDate_(0), expiry_(0), volatility_(0),
 			dividends_(0), putCall_(PutCallT::Unassigned){}
@@ -34,7 +35,7 @@ namespace ql {
 			const VolatillityT & V,
 			const DividendT & dividends,
 			const PutCallT & putCall) : spot_(spot), strike_(strike), interestRate_(interestRate), 
-										valueDate_(valueDate), expiry_(expiry), V_(V),
+										valueDate_(valueDate), expiry_(expiry), volatility_(V),
 										dividends_(dividends), putCall_(putCall){}
 
 		const PriceT & Spot() const  { return spot_; }
@@ -44,7 +45,7 @@ namespace ql {
 		void Strike(const PriceT & strike) { strike_ = strike; }
 		
 		const InterestT& InterestRate() const { return interestRate_; }
-		void InterestRate(const InterestT& interestRate) { interestRate_= interestRate; }
+		void InterestRate(const InterestT & interestRate) { interestRate_= interestRate; }
 
 		const Date & ValueDate() const { return valueDate_; }
 		void ValueDate(const Date & valueDate) { valueDate_ = valueDate; }
@@ -62,7 +63,7 @@ namespace ql {
 		const PutCallT & PutCall() const { return putCall_; }
 		void PutCall(const PutCallT & putCall) { putCall_ = putCall; }
 
-		double yearFractionToExpiry() const;
+		double YearFractionToExpiry() const;
 
 		
 	private:

@@ -23,7 +23,8 @@ TEST(DynamicAssertUT, CheckCases_DuringDebug) {
 	using namespace Assert;
 	ASSERT_EQ(default_level, Level::debug_);
 	ASSERT_EQ(current_level, Level::debug_);
-	
+	ASSERT_EQ(current_mode, Mode::throw_);
+
 	// If not specified, checked in debug, but not in release
 	EXPECT_THROW({ dynamic((n > 8), compose(__FILE__, __LINE__, "range problem")); },
 		Error);
@@ -49,6 +50,7 @@ TEST(DynamicAssertUT, CheckCases_DuringRelease) {
 	using namespace Assert;
 	ASSERT_EQ(default_level, Level::debug_);
 	ASSERT_EQ(current_level, Level::release_);
+	ASSERT_EQ(current_mode,  Mode::throw_);
 
 	// If not specified, checked in debug, but not in release
 	EXPECT_NO_THROW({ dynamic((n > 8), compose(__FILE__, __LINE__, "range problem")); });

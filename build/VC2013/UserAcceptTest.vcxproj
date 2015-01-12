@@ -57,7 +57,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\thirdParty\gtest\gtest-1.7.0\include;$(ProjectDir)..\..\include;$(ProjectDir)..\..\thirdParty\boost\boost_1_57_0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\thirdParty\gtest\gtest-1.7.0\include;$(ProjectDir)..\..\include;$(ProjectDir)..\..\thirdParty\boost\boost_1_57_0;$(ProjectDir)..\..\test;$(ProjectDir)..\..\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -73,7 +73,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\thirdParty\gtest\gtest-1.7.0\include;$(ProjectDir)..\..\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\thirdParty\gtest\gtest-1.7.0\include;$(ProjectDir)..\..\include;$(ProjectDir)..\..\thirdParty\boost\boost_1_57_0;$(ProjectDir)..\..\test;$(ProjectDir)..\..\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -91,10 +91,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\test\BasicOptionUAT.cpp" />
     <ClCompile Include="..\..\test\BlackScholesUAT.cpp" />
     <ClCompile Include="..\..\test\mainUAT.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\test\BasicOptionUAT.h" />
     <ClInclude Include="..\..\test\BlackScholesUAT.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

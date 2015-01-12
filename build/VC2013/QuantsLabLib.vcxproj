@@ -87,6 +87,7 @@
     <ClInclude Include="..\..\include\DynamicAssert.h" />
     <ClInclude Include="..\..\include\BasicOption.h" />
     <ClInclude Include="..\..\include\Date.h" />
+    <ClInclude Include="..\..\include\Result.h" />
     <ClInclude Include="..\..\include\StandardBlackScholes.h" />
   </ItemGroup>
   <ItemGroup>

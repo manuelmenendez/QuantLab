@@ -4,9 +4,15 @@
 
 namespace ql{
 
+	template < typename P, typename I, typename VT, typename D>
+	const double BasicOption <P,I,VT,D>::eps = 10e-12;
 
-	double BasicOption<>::yearFractionToExpiry() const
+	template <typename P, typename I, typename VT, typename D>
+	double BasicOption<P, I, VT, D>::YearFractionToExpiry() const
 	{
-		return (expiry_ - valueDate_) / 365.0;
-	}
+		double yfte = (expiry_ - valueDate_) / 365.0;
+		return yfte;
+	};
+
+	template class BasicOption<double, double, double, double>;
 }
