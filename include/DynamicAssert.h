@@ -12,18 +12,19 @@
 #endif
 
 #ifndef ASSERT_CURRENT_MODE 
-#define ASSERT_CURRENT_MODE Mode::throw_
+#define ASSERT_CURRENT_MODE Assert::Mode::throw_
 #endif
 
 #ifndef ASSERT_CURRENT_LEVEL
 #ifdef _DEBUG
-#define ASSERT_CURRENT_LEVEL Level::debug_
+#define ASSERT_CURRENT_LEVEL Assert::Level::debug_
 #endif
 #ifndef _DEBUG
-#define ASSERT_CURRENT_LEVEL Level::release_
+#define ASSERT_CURRENT_LEVEL Assert::Level::release_
 #endif
 #endif
 
+#define LEVEL(X)  (static_cast<int>(X) >= static_cast<int>(Assert::current_level))
 
 #include <stdexcept>
 #include <string>
@@ -31,21 +32,17 @@
 
 namespace Assert
 {
-//Si no pongo nada, se comprueba en debug, pero no en release,
-//Si pongo debug, se comprueba en debug pero no en release
-//Si pongo release, se comprueba en debug y en release
 
-#pragma message("revisar niveles")
+// If not specified, assertions are evaluated only in debug
+// If level of assertion is debug_, is evaluated in debug, but not in release
+// If level of assertion is release_,  is evaluated both in debug and release 
+
 	enum  class Mode { ignore_, throw_, terminate_ };
 	enum  class Level{ debug_ = 0, release_=1};
 
 	constexpr_ Mode current_mode = ASSERT_CURRENT_MODE;
 	constexpr_ Level current_level = ASSERT_CURRENT_LEVEL;
-	constexpr_ Level default_level = Level::release_;
-
-	inline constexpr_ bool level(int n) {
-			return static_cast<int>(n) <= static_cast<int>(current_level);
-	}
+	constexpr_ Level default_level = Level::debug_; 
 
 	struct Error : std::runtime_error
 	{
@@ -60,11 +57,21 @@ namespace Assert
 
 	void dynamic(bool b);
 
-	template <const bool  condition = level(default_level), class Except = Error>
-	void dynamic(const bool assertion, const std::string & message);
+	template <const bool  condition = LEVEL(ASSERT_CURRENT_LEVEL), class Except = Error>
+	void dynamic(const bool assertion, const std::string & message)
+	{
+			if (assertion)
+				return;
+			if (current_mode == Mode::throw_)
+				throw Except(message);
+			if (current_mode == Mode::terminate_)
+				std::terminate();
+		}
 
-	template <>
-	void dynamic<false, Error>(bool, const std::string &);
+
+	//template <Assert::Level  L = default_level, class Except = Error>
+	//void dynamicL(const bool assertion, const std::string & message);
+
 
 
 } //namespace Assert
