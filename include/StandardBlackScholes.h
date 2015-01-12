@@ -12,7 +12,7 @@ namespace ql {
 		double volatility , double dividends , bool IsCall );
 
 
-	template <  class O = BasicOption<>, class P = double, class I = double, class VT = double, class D = double >
+	template <  class O = BasicOption<> >
 	class StandardBlackScholes
 	{
 	public:
@@ -29,7 +29,7 @@ namespace ql {
 		O  theOption_;
 	};
 
-	//template <ql::PutCallT N = ql::PutCallT::Call, class O = BasicOption<>, class P = double, class I = double, class VT = double, class D = double >
+	//template <ql::PutCallT N = ql::PutCallT::Call, class O = BasicOption<>, class PriceT = double, classInterestT= double, class VolatilityT = double, class DividendT = double >
 	//double Premium_imp();
 
 
