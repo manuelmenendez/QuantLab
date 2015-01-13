@@ -51,7 +51,6 @@ namespace ql {
 		void ValueDate(const Date & valueDate) { valueDate_ = valueDate; }
 
 		const Date & Expiry() const { return expiry_; }
-
 		void Expiry(const Date & expiry) { expiry_ = expiry; }
 
 		const VolatillityT & Volatility() const { return volatility_; }

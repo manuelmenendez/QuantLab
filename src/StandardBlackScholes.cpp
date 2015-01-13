@@ -12,7 +12,7 @@ namespace ql
 	template <class O = ql::BasicOption<>>
 	const double StandardBlackScholes<O>::eps = 10e-12;
 
-	template StandardBlackScholes<ql::BasicOption<double, double, double, double> >;
+	template StandardBlackScholes<ql::BasicOption <double, double, double, double> >;
 
 	double IStandardBlackScholes(
 		double spot,
@@ -49,6 +49,7 @@ namespace ql
 		const  O::VolatillityT SIG = theOption_.Volatility();
 		
 		const double T = theOption_.YearFractionToExpiry();
+
 		Assert::dynamic((-r * T < StandardBlackScholes::eps), Assert::compose(__FILE__, __LINE__, "-r * T is below zero"));
 
 		const double factor = exp(-r * T);
@@ -59,6 +60,8 @@ namespace ql
 	template < class O >
 	double StandardBlackScholes< O >::d1()
 	{
+		using namespace Assert;
+
 		const  O::PriceT S = theOption_.Spot();
 		const  O::PriceT K = theOption_.Strike();
 		const  O::InterestT r = theOption_.InterestRate();
@@ -66,10 +69,10 @@ namespace ql
 		const  O::VolatillityT SIG = theOption_.Volatility();
 		const double T = theOption_.YearFractionToExpiry();
 
-		double dummy_eps = StandardBlackScholes::eps;
-		Assert::dynamic( ( std::abs(K) > StandardBlackScholes::eps  ), Assert::compose(__FILE__, __LINE__, "K is zero"));
-		Assert::dynamic( ( S / K > StandardBlackScholes::eps),         Assert::compose(__FILE__, __LINE__, "S/K is negative"));
-		Assert::dynamic( ( T > StandardBlackScholes::eps),              Assert::compose(__FILE__, __LINE__, "T is negative"));
+		dynamic_release( ( std::abs(K) > StandardBlackScholes::eps  ), compose(__FILE__, __LINE__, "K is zero"));
+		dynamic_release( (S / K > StandardBlackScholes::eps), compose(__FILE__, __LINE__, "S/K is negative"));
+		dynamic_release( (T > StandardBlackScholes::eps), compose(__FILE__, __LINE__, "T is negative"));
+
 		double d1 = (std::log(S / K) + (r - q + 0.5 * SIG * SIG)* T) / (SIG * std::sqrt(T));
 		return  d1;
 	}
@@ -77,9 +80,12 @@ namespace ql
 	template < class O >
 	double StandardBlackScholes< O>::d2()
 	{
+		using namespace Assert;
 		const O::VolatillityT SIG = theOption_.Volatility();
 		const double T = theOption_.YearFractionToExpiry();
-		Assert::dynamic((T > StandardBlackScholes::eps), Assert::compose(__FILE__, __LINE__, "T is negative"));
+
+		dynamic_release( (T > StandardBlackScholes::eps), compose(__FILE__, __LINE__, "T is negative"));
+		
 		const double d2 = (d1() - SIG * std::sqrt(T));
 		return d2;
 	}
@@ -107,7 +113,6 @@ namespace ql
 		double cdf = boost::math::cdf<>(nd1, d2());
 		return cdf;
 	}
-
 
 }
 

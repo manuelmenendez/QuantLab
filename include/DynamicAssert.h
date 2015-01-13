@@ -66,8 +66,9 @@ namespace Assert
 				throw Except(message);
 			if (current_mode == Mode::terminate_)
 				std::terminate();
-		}
+	}
 
+	void dynamic_release(bool expr, const char* file, const int lineno, const std::string & message);
 } //namespace Assert
 
 #include "DynamicAssert.inl"

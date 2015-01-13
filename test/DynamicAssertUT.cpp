@@ -5,13 +5,13 @@
 void throw_or_not_debug(const bool expr, const char * file, int lineno)
 {
 	using namespace Assert;
-	dynamic <LEVEL(Assert::Level::debug_)>(expr, compose(file, lineno, "range problem"));
+	dynamic <LEVEL(Level::debug_)>(expr, compose(file, lineno, "range problem"));
 }
 
 void throw_or_not_release(const bool expr, const char * file, int lineno)
 {
 	using namespace Assert;
-	dynamic <LEVEL(Assert::Level::release_)>(expr, compose(file, lineno, "range problem"));
+	dynamic <LEVEL(Level::release_)>(expr, compose(file, lineno, "range problem"));
 }
 
 #ifdef _DEBUG
@@ -36,7 +36,10 @@ TEST(DynamicAssertUT, CheckCases_DuringDebug) {
 
 	// If release_ specified, checked in debug, and  release
 	EXPECT_NO_THROW(throw_or_not_release((n >= 8), __FILE__, __LINE__));
-	EXPECT_THROW(throw_or_not_release((n > 8), __FILE__, __LINE__), Error); //X
+	EXPECT_THROW(throw_or_not_release((n > 8), __FILE__, __LINE__), Error); 
+
+	EXPECT_THROW( dynamic_release((n > 8),compose(__FILE__, __LINE__, "n is negative")), Error);
+	EXPECT_NO_THROW(dynamic_release((n == 8), compose(__FILE__, __LINE__, "n is not 8")));
 
 }
 
@@ -59,5 +62,8 @@ TEST(DynamicAssertUT, CheckCases_DuringRelease) {
 	// If release_ specified, checked in debug, and  release
 	EXPECT_NO_THROW(throw_or_not_release((n >= 8), __FILE__, __LINE__));
 	EXPECT_THROW(throw_or_not_release((n > 8), __FILE__, __LINE__), Error);
+
+	EXPECT_THROW(dynamic_release((n > 8), compose(__FILE__, __LINE__, "n is negative")), Error);
+	EXPECT_NO_THROW(dynamic_release((n == 8), compose(__FILE__, __LINE__, "n is not 8")));
 }
 #endif

@@ -27,7 +27,12 @@ namespace Assert{
 	{
 		dynamic< LEVEL(0), Assert::Error>(b, "Assert::dynamic failed");
 	}
-
+	
+	inline
+	void dynamic_release(bool expr, const std::string & message)
+	{
+		dynamic <LEVEL(Assert::Level::release_)>(expr,message);
+	}
 } //namespace Assert
 
 

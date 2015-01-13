@@ -21,5 +21,8 @@
     <ClInclude Include="..\..\test\TestBasicOptionFixedValues.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\test\Exchange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
