@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\test\TestBasicOptionFixedValues.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -8,7 +8,7 @@
 
 void BasicOptionOptionUATFixture::SetUp()
 {
-	option_ = test::TestBasicOptionFixedValues();
+	 option_ = test::TestBasicOptionFixedValues<ql::PutCallT::Call>();
 };
 
 

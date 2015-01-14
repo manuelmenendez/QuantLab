@@ -13,6 +13,5 @@ q_StandarBlackScholes(double spot // spot
 					, bool isCall // true for Call, false for Put
 )
 {
-	return ql::IStandardBlackScholes(spot, strike, interestRate, valueDate, expiryDtae, volatility, Dividends, isCall);
+	return IStandardBlackScholes(spot, strike, interestRate, valueDate, expiryDtae, volatility, Dividends, isCall);
 }
-

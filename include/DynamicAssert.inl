@@ -11,11 +11,9 @@ namespace Assert{
 		return os.str();
 	}
 
-
 	template <> inline 
 	void dynamic<false, Assert::Error>(bool, const std::string &){}
 
-		
 	inline 
 	void dynamic(const bool b, const std::string & s)
 	{

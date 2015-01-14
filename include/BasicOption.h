@@ -11,7 +11,8 @@ namespace ql {
 
 	//Class that represents a standard BlackScholes Option. Altough usually instatiated with simple types
 	//it is templatized to be able to  use more complex types for V, prices etc...
-	// Semantic of measures is parts per unit.
+	
+	//Semantic of measures is parts per unit.
 	
 	template < typename P = double, typename I = double, typename VT = double, typename D = double>
 	class BasicOption 
@@ -24,8 +25,7 @@ namespace ql {
 		
 		static const double eps;
 
-		BasicOption() : spot_(0), strike_(0), interestRate_(0), valueDate_(0), expiry_(0), volatility_(0),
-			dividends_(0), putCall_(PutCallT::Unassigned){}
+		BasicOption() = default;
 		
 		BasicOption(const PriceT & spot,
 			const PriceT & strike,
@@ -34,9 +34,9 @@ namespace ql {
 			const Date & expiry,
 			const VolatillityT & V,
 			const DividendT & dividends,
-			const PutCallT & putCall) : spot_(spot), strike_(strike), interestRate_(interestRate), 
-										valueDate_(valueDate), expiry_(expiry), volatility_(V),
-										dividends_(dividends), putCall_(putCall){}
+			const PutCallT & putCall) : spot_(spot), strike_(strike), interestRate_(interestRate),
+			valueDate_(valueDate), expiry_(expiry), volatility_(V),
+			dividends_(dividends), putCall_(putCall) {};
 
 		const PriceT & Spot() const  { return spot_; }
 		void Spot(const PriceT & spot) { spot_ = spot; }
@@ -66,14 +66,14 @@ namespace ql {
 
 		
 	private:
-		PriceT spot_;
-		PriceT strike_;
-		InterestT interestRate_;
-		Date valueDate_;
-		Date expiry_;
-		VolatillityT volatility_;
-		DividendT dividends_;
-		PutCallT putCall_;
+		PriceT spot_ = PriceT(0);
+		PriceT strike_ = PriceT(0);
+		InterestT interestRate_ = InterestT(0);
+		Date valueDate_ = Date(0);
+		Date expiry_ = Date(0);
+		VolatillityT volatility_ = VolatillityT(0);
+		DividendT dividends_ = DividendT(0);
+		PutCallT putCall_ = PutCallT::Unassigned;
 	};
 
 

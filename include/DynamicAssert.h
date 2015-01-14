@@ -1,6 +1,7 @@
 // Dynamic assertions. Seee "Bjarne Stroustrup, The C++ Programming Language", 13.4
 // Other alternative could be boost assertions
 // Adapted to MSVC 2013
+// Rewrite when VS supports constexpr
 
 #ifndef DASSERT_H
 #define DASSERT_H
