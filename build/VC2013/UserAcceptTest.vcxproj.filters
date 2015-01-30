@@ -18,6 +18,9 @@
     <ClCompile Include="..\..\test\BasicOptionUAT.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\NewtonRaphsonUAT.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\test\BlackScholesUAT.h">

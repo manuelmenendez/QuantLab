@@ -55,7 +55,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\include;$(ProjectDir)..\..\thirdParty\boost\boost_1_57_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\include;$(ProjectDir)..\..\thirdParty\boost\boost_1_57_0;$(ProjectDir)..\..\include\private;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -71,7 +71,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\include;$(ProjectDir)..\..\thirdParty\boost\boost_1_57_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\include;$(ProjectDir)..\..\thirdParty\boost\boost_1_57_0;$(ProjectDir)..\..\include\private;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -87,11 +87,15 @@
     <ClInclude Include="..\..\include\DynamicAssert.h" />
     <ClInclude Include="..\..\include\BasicOption.h" />
     <ClInclude Include="..\..\include\Date.h" />
+    <ClInclude Include="..\..\include\NewtonRaphson.h" />
+    <ClInclude Include="..\..\include\private\NewtonRaphson1D_Impl.h" />
     <ClInclude Include="..\..\include\Result.h" />
+    <ClInclude Include="..\..\include\Solver.h" />
     <ClInclude Include="..\..\include\StandardBlackScholes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\BasicOption.cpp" />
+    <ClCompile Include="..\..\src\NewtonRapshon.cpp" />
     <ClCompile Include="..\..\src\StandardBlackScholes.cpp" />
   </ItemGroup>
   <ItemGroup>
