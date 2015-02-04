@@ -70,6 +70,8 @@ namespace Assert
 	}
 
 	void dynamic_release(bool expr, const char* file, const int lineno, const std::string & message);
+	void dynamic_release(bool expr, const std::string & message = "");
+
 } //namespace Assert
 
 #include "DynamicAssert.inl"

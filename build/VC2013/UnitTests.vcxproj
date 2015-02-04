@@ -86,6 +86,7 @@
     <ClCompile Include="..\..\test\BlackScholesUT.cpp" />
     <ClCompile Include="..\..\test\DynamicAssertUT.cpp" />
     <ClCompile Include="..\..\test\mainUT.cpp" />
+    <ClCompile Include="..\..\test\NewtonRaphsonUT.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\thirdParty\gtest\gtest-1.7.0\msvc\gtest-md.vcxproj">

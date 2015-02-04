@@ -31,6 +31,12 @@ namespace Assert{
 	{
 		dynamic <LEVEL(Assert::Level::release_)>(expr,message);
 	}
+	
+	inline
+	void dynamic_release(bool expr, const char* file, const int lineno, const std::string & message)
+	{
+		dynamic <LEVEL(Assert::Level::release_)>(expr, compose(file, lineno, message));
+	}
 } //namespace Assert
 
 
